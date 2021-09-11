@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The effect of connecting drops | Эффект соединения капель</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+</head>
+
+<body>
+
+  <h1 class="svg-connecting-drops__title">DBL click for copy circles,<br>drag and drop</h1>
+
+  <div class="svg-connecting-drops">
+    <div class="svg-connecting-drops__circle --n1"></div>
+    <div class="svg-connecting-drops__circle --n2"></div>
+
+    <svg class="svg-connecting-drops__svg">
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+        <feColorMatrix values="
+          1 0 0  0   0
+          0 1 0  0   0
+          0 0 1  0   0
+          0 0 0  50 -25 "></feColorMatrix>
+      </filter>
+    </svg>
+
+  </div>
+
+  <script>
+    (function () {
+      document.addEventListener('DOMContentLoaded', function () {
+
+        let dragManager = new DragManager('.svg-connecting-drops__circle', '.svg-connecting-drops');
+
+
+        
+        let svgConnectingDrops__circleList = document.querySelectorAll('.svg-connecting-drops__circle');
+        svgConnectingDrops__circleList.forEach(function (circle, i) {
+          circle.addEventListener('mousedown', function () {
+            // circle.classList.add('--stop-animation');
+          });
+        });
+
+        document.addEventListener('dblclick', function (e) {
+          if (e.matches = '.svg-connecting-drops__circle') {
+            let copyCircle = e.target.cloneNode();
+            document.body.append(copyCircle);
+          }
+        });
+
+
+
+      });
+    })();
+  </script>
+
+  <script src="./js/DragManager.js"></script>
+</body>
+
+</html>
